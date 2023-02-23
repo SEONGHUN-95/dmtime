@@ -1,0 +1,109 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content" class="container my-3">
+    <div class="row my-3 menubtn row-cols-auto">
+        <div class="col">
+            <a th:href="@{/question/list/communicate}" class="btn btn-outline-primary">소통&공감</a>
+            <a th:href="@{/question/list/share}" class="btn btn-outline-primary">나누고</a>
+            <a th:href="@{/question/list/lost}" class="btn btn-outline-primary">분실물</a>
+        </div>
+        <div class="dropdown col">
+            <button class="btn btn-outline-primary sortbtn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                <img th:src="@{/images/sorting.png}" alt="정렬">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" th:href="@{/question/list/{category}(category=${category}, sort=views)}">조회수
+                    순</a></li>
+                <li><a class="dropdown-item"
+                       th:href="@{/question/list/{category}(category=${category}, sort=like_count)}">좋아요 순</a></li>
+                <li><a class="dropdown-item" th:href="@{/question/list/{category}(category=${category}, sort=id)}">최신
+                    순</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-4 write"><a th:href="@{/question/create}" class="btn btn-primary">글쓰기</a></div>
+        <div class="input-group col">
+            <input type="text" id="search_kw" class="form-control" placeholder="검색어 입력" th:value="${kw}">
+            <button class="btn btn-outline-secondary" type="button" id="btn_search">검색</button>
+        </div>
+    </div>
+    <!-- 게시글시작 -->
+    <div class="article-container my-2" th:each="question, loop : ${paging}">
+        <div class="article-id">
+            <div th:if="${question.author != null}" th:text="${question.author.nickname}"></div>
+            <div>
+                <span><img class = "view-logo" th:src="@{/images/view.png}" alt="조회수"></span>
+                <span th:text="${question.views}"></span>
+                <span><img class = "like-logo" th:src="@{/images/like.png}" alt="추천수"></span>
+                <span th:text="${#lists.size(question.questionlikes)}"></span>
+            </div>
+        </div>
+        <div class="article-title">
+            <div><a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a></div>
+        </div>
+        <div class="article-date" th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}">
+        </div>
+    </div>
+    <!-- 페이징처리 시작 -->
+    <div th:if="${!paging.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
+                    <span>이전</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                th:classappend="${page == paging.number} ? 'active'" class="page-item">
+                <a th:text="${page}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}">
+                    <span>다음</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 페이징처리 끝 -->
+    <form th:action="@{/question/list}" method="get" id="searchForm">
+        <input type="hidden" id="kw" name="kw" th:value="${kw}">
+        <input type="hidden" id="page" name="page" th:value="${paging.number}">
+    </form>
+</div>
+<script layout:fragment="script" type='text/javascript'>
+	const page_elements = document.getElementsByClassName("page-link");
+	Array.from(page_elements).forEach(function (element) {
+		element.addEventListener('click', function () {
+			document.getElementById('page').value = this.dataset.page;
+			document.getElementById('searchForm').submit();
+		});
+	});
+	const btn_search = document.getElementById("btn_search");
+	btn_search.addEventListener('click', function () {
+		document.getElementById('kw').value = document.getElementById('search_kw').value;
+		document.getElementById('page').value = 0;  // 검색버튼을 클릭할 경우 0페이지부터 조회한다.
+		document.getElementById('searchForm').submit();
+	});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+</script>
+</html>

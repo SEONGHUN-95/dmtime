@@ -1,0 +1,8 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content" class="container my-3">
+    <div class="my-2" th:each="preMember, loop : ${preMembers}">
+    <span th:text="${preMember.username}+' '+${preMember.nickname}"></span>
+    <a th:href="@{|/admin/edit/${preMember.id}|}" class="btn btn-outline-primary">가입승인</a>
+    </div>
+</div>
+</html>

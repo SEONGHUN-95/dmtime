@@ -1,0 +1,18 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<script layout:fragment="script" type='text/javascript'>
+</script>
+<div layout:fragment="content">
+  <div class="home-container">
+    <div class="home-content">
+    <span>임무수행</span>
+    <span th:text="${doneDays}"></span>
+    <span>일차</span>
+    <br><br><br>
+      <span th:text="${percent}"></span>
+      <span>%</span>
+      <br>
+      <progress max="100" th:value="${percent}"></progress>
+    </div>
+  </div>
+</div>
+</html>

@@ -1,0 +1,40 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content" class="container my-3">
+    <div class="profile-container">
+        <div class="profile-content">
+    <span th:text="${siteUser.nickname}"></span>
+    <span>님, 반갑습니다.</span>
+            <br><br><br><br>
+    <div><h2>내가 쓴 글 </h2></div>
+            <br><br>
+    <table class="table" id="profile-table">
+        <tbody>
+        <tr class="text-center" th:each="question, loop : ${paging}">
+<!--            <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
+            <td>제목 : </td>
+            <td class="text-start">
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+            </div>
+    </div>
+    <div th:if="${!paging.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{|?page=${paging.number-1}|}">
+                    <span><</span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                    <span>></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</html>

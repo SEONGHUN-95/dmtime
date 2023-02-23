@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<title>동명타임</title>
+	<meta name="author" content="Jack"/>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<!-- Open Graph(KakaoTalk)-->
+	<meta propery="og:type" content="website" />
+	<meta property="og:title" content="동명타임" />
+	<meta property="og:description" content="동명 27진만을 위한 웹사이트입니다" />
+	<meta property="og:url" content="https://www.fun-coding.org" />
+	<meta property="og:image" content="@{/images/dongmyung_mark.png}">
+	<!-- 일반적인 fabicon 설정 -->
+	<link rel="icon" th:href="@{/images/dongmyung_mark.ico}" />
+	<!-- 아이폰용 fabicon 설정 -->
+	<link rel="apple-touch-icon" th:href="@{/images/dongmyung_mark.ico}" />
+	<!-- 인터넷 익스플로어용 fabicon 설정-->
+	<link rel="short icon" type="image/x-icon" th:href="@{/images/dongmyung_mark.ico}" />
+	<!-- font 초기화-->
+	<link rel="stylesheet" type="text/css" th:href="@{/nomalize.css}"/>
+	<link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css" />
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css?ver=1}">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css?ver=1}">
+</head>
+<body>
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+	<th:block layout:fragment="content"></th:block>
+	<th:block layout:fragment="script"></th:block>
+	<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

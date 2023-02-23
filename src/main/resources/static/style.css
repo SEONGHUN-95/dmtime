@@ -1,0 +1,98 @@
+* {
+    box-sizing:border-box;
+}
+body{
+    font-family : "Spoqa Han Sans Neo", "Sans-serif";
+}
+textarea {
+    width:100%;
+}
+
+input[type=submit] {
+    margin-top:10px;
+}
+
+@media only screen and (min-width : 1200px){
+
+}
+
+.dongmyung-logo{
+margin-bottom : 4px;
+}
+.like-logo{
+    width : 12px;
+    height : 12px;
+}
+.view-logo{
+    width : 12px;
+    height : 12px;
+}
+
+a:hover {
+  color: #2186c4;
+  cursor: pointer;
+}
+.home-container {
+  display : flex;
+  justify-content :center;
+  align-items : center;
+  height: 700px;
+}
+.home-content {
+    text-align :center;
+    font-size: 2rem;
+    line-height : 1rem;
+}
+.profile-container {
+  display : flex;
+  justify-content :center;
+  align-items : start;
+  height: 700px;
+}
+.profile-content {
+    text-align :center;
+    font-size: 2rem;
+    line-height : 1rem;
+}
+.text-start a{
+    text-decoration-line: none;
+    color : black;
+}
+.write{
+    font-size : 0.3rem;
+}
+#profile-table{
+    font-size : 2rem;
+}
+
+a{
+    text-decoration-line : none;
+    color : inherit;
+}
+.sortbtn{
+    height : 38px;
+}
+/* 글 리스트  */
+      .article-container {
+        width: 90%;
+        height: 130px;
+        padding: 1rem;
+        margin : 0 auto;
+        border: 2px solid #87cefa;
+        border-radius: 10px;
+      }
+      .article-id {
+        display: flex;
+        justify-content: space-between;
+      }
+      .article-title {
+        margin: 0.7rem 0.5rem;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        white-space : nowrap;
+        overflow : hidden;
+        text-overflow : ellipsis;
+      }
+      .article-date {
+        float: right;
+      }

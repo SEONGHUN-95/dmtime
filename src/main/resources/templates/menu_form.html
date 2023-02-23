@@ -1,0 +1,15 @@
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<div layout:fragment="content" class="container my-3">
+<h2>메뉴판 업로드</h2>
+
+<form th:action="@{/menu/upload}" method="post" enctype="multipart/form-data">
+
+  <h4>사진 업로드</h4>
+  <input type="file" name="file">
+
+  <h4>여러 사진 한 번에 업로드</h4>
+  <input type="file" multiple="multiple" name="files">
+  <input type="submit">
+</form>
+</div>
+</html>
